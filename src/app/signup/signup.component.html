@@ -1,0 +1,66 @@
+<div class="row">
+	
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+<div class="col-md-6 col-md-offset-3">
+	<h2>Sign Up and Start Learning!</h2>
+
+    <form  (ngSubmit)="doRegister(user)" #user="ngForm" novalidate>
+    	  <pre>{{user.value | json}}
+
+    	    <p>Is "myForm" valid? {{user.valid}}</p>
+    	</pre>
+        <div class="form-group" >
+            <label for="firstName">First Name</label>
+            <input type="text" name = "firstName" class="form-control" [(ngModel)]="user.firstName" required placeholder="Full name" #firstName="ngModel"/>
+            <div *ngIf="firstName.invalid && ( firstName.dirty || user.submitted)"
+            class="alert alert-danger">
+            <div *ngIf="firstName.errors.required">
+            	Name is required 
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastname" required placeholder="Last name" />
+        </div>
+        <div class="form-group">
+            <label for="username">Email</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="user.email" required  #email="ngModel"/>
+            <div *ngIf="email.invalid && ( email.dirty || user.submitted )">
+            	<div *ngIf="email.errors.required" class="alert alert-danger">
+            	Please enter email address
+            </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" />
+            <div *ngIf="!password.valid && ( password.dirty || user.submitted )">
+                <div class="alert alert-danger"> Please enter password </div>
+            </div>
+        </div>
+        <div class="form-group">
+        	<label for="country">Country:</label>
+        	<select [(ngModel)]="user.country" name ="user.country" class="form-control" required>
+                <option *ngFor="let country of contryname" [value]= "country">{{country}}</option>
+        	</select>
+        </div>
+        <div class="checkbox">
+        	<input type="checkbox" name="subscribe" id="subscribe" [ngModel]="user.subscribe">
+        	<label for="subscribe">
+        		<span>You’re in for exciting deals and personalized recommendations</span>
+            </label>
+
+        </div>
+        <div class="form-group">
+            <button type= "submit" class="btn btn-default btn-lg" [disabled]="!user.valid">Register</button>
+            <a [routerLink]="['/login']" class="btn btn-lg btn-link">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>

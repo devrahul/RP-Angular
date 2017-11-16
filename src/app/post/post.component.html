@@ -1,0 +1,31 @@
+<div *ngIf="showDetails" > 
+<div class="thumbnail">
+    <img src="assets/images/default-post.jpg" alt="post thumbnail">
+
+  <div class="caption">
+    <div>
+      <h4>
+        <span class="label label-primary">
+          PostId : {{ post.id }}
+        </span>
+      </h4>
+      <h3>
+        <i class="glyphicon glyphicon-tag"></i> 
+         {{ post.userId }}
+      </h3>
+      <h4>
+        <i class="glyphicon glyphicon-fire"></i> 
+          {{ title.shortTittle( post.title) }}
+      </h4>
+
+      <hr>
+
+      <button 
+        class="btn btn-sm btn-success">
+        Details
+      </button>
+
+    </div>
+  </div>
+</div>
+</div>
