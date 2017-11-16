@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule,JsonpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CribListingComponent } from './crib-listing/crib-listing.component';
@@ -29,6 +29,8 @@ import { UserService } from './services/users/user.service';
 import { UserlistComponent } from './userlist/userlist.component';
 import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
 import { FAQComponent } from './faq/faq.component';
+import { PhotostockComponent } from './photostock/photostock.component';
+import { PhotostockServicesService } from './services/photostock-services.service';
 
 const appRoute : Routes  = [{ 
   path: '', redirectTo:'home', pathMatch: 'full',},
@@ -40,6 +42,7 @@ const appRoute : Routes  = [{
   { path: 'addprop',  component: AddListingFormComponent,},
   { path: 'posts', component:ArticlesComponent,},
   { path : 'users', component: UserlistComponent,},
+  { path : 'photostock', component : PhotostockComponent,},
   { path: '**', component:PagenotfoundComponent,},
   ];
 
@@ -61,12 +64,13 @@ const appRoute : Routes  = [{
     SearchComponent,
     UserlistComponent,
     PropertydetailsComponent,
-    FAQComponent
+    FAQComponent,
+    PhotostockComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpModule,JsonpModule,
     RouterModule.forRoot(appRoute, {useHash:true, enableTracing:false}),
   ],
   providers: [
@@ -75,7 +79,8 @@ const appRoute : Routes  = [{
     PostService,
     ShortTitleService,
     PhotosService,
-    UserService
+    UserService,
+    PhotostockServicesService
   ],
   bootstrap: [AppComponent]
 })

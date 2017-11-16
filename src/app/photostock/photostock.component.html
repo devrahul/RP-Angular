@@ -1,0 +1,7 @@
+<div class="well">
+	<ul>
+		<li *ngFor="let category of categoryData">
+			<a href="{{apiRoot}}?category={{category.name}}&callback=JSONP_CALLBACK">{{category.name}}</a></li>
+	</ul>
+</div>
+
