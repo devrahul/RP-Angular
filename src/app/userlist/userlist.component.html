@@ -1,0 +1,46 @@
+
+<div class="row">
+	<div class="col-sm-12">
+  	<div class="panel panel-default">
+  		<div class="panel panel-body">
+  			<div class="panel panel-heading">
+  				<h2>User list</h2>
+  			</div>
+<div *ngFor="let user of users" class="col-sm-3">
+  <div *ngIf="showDetails" > 
+<div class="thumbnail">
+    <img src="assets/images/default-user.jpg" alt="post thumbnail">
+
+  <div class="caption">
+    <div>
+      <h4>
+        <span class="label label-primary">
+          User ID : {{ user.id }}
+        </span>
+      </h4>
+      <h3>
+        <i class="glyphicon glyphicon-tag"></i> 
+         {{ user.name }}
+      </h3>
+      <h4>
+        <i class="glyphicon glyphicon-exclamation-sign"></i> 
+          {{ user.email  }}
+      </h4>
+
+      <hr>
+
+      <button 
+        class="btn btn-lg btn-default">
+        Details
+      </button>
+      <button class="btn btn-default btn-md " (click) = "getUserDetails( user.id)"> User details</button>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
