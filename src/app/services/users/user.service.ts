@@ -15,6 +15,7 @@ export class UserService {
   	.map( res => res.json())
   	.catch((err:Response) => {
             let details = err.json();
+            console.log(Observable.throw(details))
             return Observable.throw(new Error(details));
          });
   }

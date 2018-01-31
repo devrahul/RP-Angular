@@ -1,46 +1,63 @@
 
-<div class="row">
-	<div class="col-sm-12">
-  	<div class="panel panel-default">
-  		<div class="panel panel-body">
-  			<div class="panel panel-heading">
-  				<h2>User list</h2>
-  			</div>
-<div *ngFor="let user of users" class="col-sm-3">
-  <div *ngIf="showDetails" > 
-<div class="thumbnail">
-    <img src="assets/images/default-user.jpg" alt="post thumbnail">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel panel-body">
+          <div class="panel panel-heading">
+            <h2>User list</h2>
+          </div>
+          
+          <div *ngIf="errors">
+            <div class="col-sm-12">
+            <div class="alert alert-warning">
+              The server was unable to process the request due to an internal error,
+For more information about the error, either API Server is down that is not able to process data or either you internet connection is too slow , if API Server is down then our team is inspecting the outage as soon as possible, once it is up , we would notify you soon ..
+{{errors | json}}
+            </div>
+          </div>
+          </div>
+          <div class="col-sm-3" *ngFor="let user of users">
+              <div class="thumbnail">
+                <img alt="post thumbnail" src="assets/images/default-user.jpg">
+                <div class="caption">
+                  <div *ngIf="!users.showOtherDetails">
+                    <h4><span class="label label-primary">User ID : {{ user.id }}</span></h4>
+                    <h4><i class="glyphicon glyphicon-tag"></i> {{ user.name }}</h4>
+                    <h4><i class="glyphicon glyphicon-exclamation-sign"></i> {{ user.email }}</h4>
+                    <hr> 
+                  </div>
+                  <button class="btn btn-lg btn-primary" *ngIf="!users.showOtherDetails" 
+                    (click) = "users.showOtherDetails = !users.showOtherDetails">Details</button>
+                  <hr>
+                  <div *ngIf="users.showOtherDetails">
+                    <h4>
+                      <span>
+                        <i class="glyphicon glyphicon-tag"></i> {{ user.address.street }}
+                      </span>
 
-  <div class="caption">
-    <div>
-      <h4>
-        <span class="label label-primary">
-          User ID : {{ user.id }}
-        </span>
-      </h4>
-      <h3>
-        <i class="glyphicon glyphicon-tag"></i> 
-         {{ user.name }}
-      </h3>
-      <h4>
-        <i class="glyphicon glyphicon-exclamation-sign"></i> 
-          {{ user.email  }}
-      </h4>
+                      <span>
+                        <i class="glyphicon glyphicon-tag"></i> {{ user.address.suite }}
+                      </span>
 
-      <hr>
+                      <span>
+                        <i class="glyphicon glyphicon-tag"></i> {{ user.address.city}}
+                      </span>
 
-      <button 
-        class="btn btn-lg btn-default">
-        Details
-      </button>
-      <button class="btn btn-default btn-md " (click) = "getUserDetails( user.id)"> User details</button>
+                      <span>
+                        <i class="glyphicon glyphicon-pencil"></i> {{ user.address.zipcode }}
+                      </span>
 
+                      <span>
+                        <i class="glyphicon glyphicon-pencil"></i> {{ user.geo.lat}} {{ user.geo.lng}}
+                      </span>
+                    </h4>
+                    <hr>
+                    <button class="btn btn-lg btn-danger" (click) = "users.showOtherDetails = !users.showOtherDetails">Closes</button> 
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>

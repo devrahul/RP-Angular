@@ -36,12 +36,20 @@
 
           </div>
         </div>
+        <div class="col-sm-4">
+          <button class="btn btn-success btn-md" (click)="addMoreCrib()">Add More Listing</button>
+          <button class="btn btn-primary btn-md" (click)="renderCribs('grid')">Grid</button>
+          <button class="btn btn-primary btn-md" 
+          (click)="renderCribs('list')">List</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div *ngFor="let crib of cribs | sortBy: [sortField, sortDirection]">
-    <app-crib-card [crib]="crib" class="col-sm-3"></app-crib-card>
+  <div *ngIf="renderCribDisplay">
+    <div *ngFor="let crib of cribs | sortBy: [sortField, sortDirection]">
+      <app-crib-card [crib]="crib" [render] ="renderCribDisplay"></app-crib-card>
+    </div>
   </div>
   <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
 </div>

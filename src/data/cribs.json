@@ -70,5 +70,29 @@
     "bathrooms": 2.5,
     "area": 1788,
     "image":"crib-6"
+  },
+  {
+    "id": 1313,
+    "type": "House",
+    "price": 354900,
+    "name" : "Cribs 7 ",
+    "address": "7398 East Avenue New Delhi",
+    "description": "You'll love the view!",
+    "bedrooms": 4,
+    "bathrooms": 3.5,
+    "area": 1788,
+    "image":"crib-7"
+  },
+  {
+    "id": 522,
+    "type": "Condo",
+    "price": 21500,
+    "name" : "Cribs 8 ",
+    "address": "1857 Andover Court Noida",
+    "description": "Nice little condo with room to grow.",
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "area": 1056,
+    "image":"crib-8"
   }
 ]
