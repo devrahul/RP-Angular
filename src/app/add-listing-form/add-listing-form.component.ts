@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormsModule,NgForm }   from '@angular/forms';
+import { FormsModule,NgForm}   from '@angular/forms';
 import { CribsService } from './../services/cribs.service';
 import { UtilService } from './../services/util.service';
 

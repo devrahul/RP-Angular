@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
   	<div *ngFor="let post of posts">
-  		<app-post  [post]="post" class="col-sm-3"></app-post>
+  		<app-post  [post]="post" class="col-sm-3" [error]="errors"></app-post>
   	</div>
   </div>
 </div>

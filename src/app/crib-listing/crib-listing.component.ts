@@ -3,6 +3,7 @@ import { CribsService } from './../services/cribs.service';
 import { UtilService } from './../services/util.service';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { Crib } from './../interfaces/crib';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crib-listing',
@@ -15,6 +16,7 @@ export class CribListingComponent implements OnInit {
   error: string = '';
   sortField: string = 'price';
   sortDirection: string = 'asc';
+  renderCribDisplay:string = 'grid'
   sortFields: Array<string> = [
     'address',
     'area',
@@ -26,7 +28,8 @@ export class CribListingComponent implements OnInit {
 
   constructor(
     private cribsService: CribsService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private router : Router,
   ) { }
 
   ngOnInit() {
@@ -39,6 +42,14 @@ export class CribListingComponent implements OnInit {
     this.cribsService.newCribSubject.subscribe(
       data => this.cribs = [data, ...this.cribs]
     );
+  }
+
+  addMoreCrib(){
+    let link = ['addprop']
+    this.router.navigate(link);
+  }
+  renderCribs( type ) {
+    this.renderCribDisplay = type
   }
 
 }

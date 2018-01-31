@@ -10,6 +10,7 @@ import { Crib } from './../interfaces/crib';
 export class CribCardComponent {
 
   @Input('crib') crib: Crib;
+  @Input('render') render 
 
   constructor() {}
 

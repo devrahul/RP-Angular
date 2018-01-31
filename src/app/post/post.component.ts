@@ -11,7 +11,7 @@ import { ShortTitleService } from './../services/short-title.service';
 })
 export class PostComponent implements OnInit {
 	@Input( 'post') post : Post
-
+	@Input('error') error : Object
 	showDetails : boolean = true 
 
   constructor( private title : ShortTitleService ) { }

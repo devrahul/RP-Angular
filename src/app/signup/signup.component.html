@@ -7,19 +7,18 @@
 	<h2>Sign Up and Start Learning!</h2>
 
     <form  (ngSubmit)="doRegister(user)" #user="ngForm" novalidate>
-    	  <pre>{{user.value | json}}
-
-    	    <p>Is "myForm" valid? {{user.valid}}</p>
-    	</pre>
+    	  <!--<pre>{{user.value | json}}
+    	    <p>Is "myForm" valid? {{user.valid}}</p>->
+    	</pre>-->
         <div class="form-group" >
             <label for="firstName">First Name</label>
-            <input type="text" name = "firstName" class="form-control" [(ngModel)]="user.firstName" required placeholder="Full name" #firstName="ngModel"/>
-            <div *ngIf="firstName.invalid && ( firstName.dirty || user.submitted)"
-            class="alert alert-danger">
-            <div *ngIf="firstName.errors.required">
-            	Name is required 
+            <input type="text" name = "firstName" class="form-control" [(ngModel)]="user.firstName" required placeholder="Full name"
+            minlength="5" 
+            #firstName="ngModel"/>
+            <div class="alert alert-danger" 
+            [hidden]="!firstName.hasError('minlength')">
+            Name should be at least 5 character long
             </div>
-        </div>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
@@ -27,32 +26,50 @@
         </div>
         <div class="form-group">
             <label for="username">Email</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="user.email" required  #email="ngModel"/>
-            <div *ngIf="email.invalid && ( email.dirty || user.submitted )">
-            	<div *ngIf="email.errors.required" class="alert alert-danger">
-            	Please enter email address
-            </div>
-            </div>
+            <input type="email" class="form-control" name="email" [(ngModel)]="user.email" required  #email="ngModel"
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+            />
+            <div class="alert alert-danger" [hidden]="!email.hasError('pattern')">Enter valid email address</div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" />
-            <div *ngIf="!password.valid && ( password.dirty || user.submitted )">
-                <div class="alert alert-danger"> Please enter password </div>
+            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" 
+            pattern="[a-zA-Z0-9\!@#-]+"
+            minlength="6"
+            maxlength="12" 
+            />
+            <div class="alert alert-danger" [hidden]="!password.hasError('pattern')">should be valid password</div>
+                <div class="alert alert-danger" 
+                [hidden]="!password.hasError('minlength') ">password should be minimum 6 digit
             </div>
         </div>
         <div class="form-group">
         	<label for="country">Country:</label>
-        	<select [(ngModel)]="user.country" name ="user.country" class="form-control" required>
-                <option *ngFor="let country of contryname" [value]= "country">{{country}}</option>
+        	<select [(ngModel)]="user.country" name ="country" class="form-control" required
+            #country = "ngModel" (change)="selectStates( $event.target.value)">
+            <option value="0">--Select Country--</option>
+            <option *ngFor="let country of countries" [value]= "country.id">{{country.code}}</option>
         	</select>
+            <div *ngIf="country.errors && (country.dirty || country.touched)" class="alert alert-danger">
+                <div [hidden]="!country.errors.required">
+                Choose country name!
+                </div>  
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <select name="country" class="form-control" #state = "ngModel" [ngModel]="user.state">
+                <option value="0">--Select State name--</option>
+                <option *ngFor="let state of states" [value]="state">{{state.code}}</option>
+            </select>
         </div>
         <div class="checkbox">
-        	<input type="checkbox" name="subscribe" id="subscribe" [ngModel]="user.subscribe">
+        	<input type="checkbox" name="subscribe" id="subscribe"  [(ngModel)]="user.subscribe" #subscribe = 
+            "ngModel" required>
         	<label for="subscribe">
-        		<span>You’re in for exciting deals and personalized recommendations</span>
+        		<span>Accept T & C Conditions</span>
             </label>
-
+            <div [hidden] ="!subscribe.errors" class="alert alert-danger"> please accept T & C. </div> 
         </div>
         <div class="form-group">
             <button type= "submit" class="btn btn-default btn-lg" [disabled]="!user.valid">Register</button>

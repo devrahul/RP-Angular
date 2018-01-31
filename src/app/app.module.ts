@@ -31,6 +31,15 @@ import { PropertydetailsComponent } from './propertydetails/propertydetails.comp
 import { FAQComponent } from './faq/faq.component';
 import { PhotostockComponent } from './photostock/photostock.component';
 import { PhotostockServicesService } from './services/photostock-services.service';
+import { PhotoCategoryComponent } from './photo-category/photo-category.component';
+import { RandomUserComponent } from './random-user/random-user.component';
+import { RandomUserService } from './services/random-user.service';
+import { AddnewuserComponent } from './addnewuser/addnewuser.component';
+import { CountryDataService } from './services/country-data.service';
+import { VideolistComponent } from './videolist/videolist.component';
+import { VideoDetailsComponent } from './video-details/video-details.component';
+import { SafePipe } from './utility/safe.pipe';
+import { LimitPipe } from './utility/limit.pipe';
 
 const appRoute : Routes  = [{ 
   path: '', redirectTo:'home', pathMatch: 'full',},
@@ -43,6 +52,8 @@ const appRoute : Routes  = [{
   { path: 'posts', component:ArticlesComponent,},
   { path : 'users', component: UserlistComponent,},
   { path : 'photostock', component : PhotostockComponent,},
+  { path : 'search', component : SearchComponent,},
+  { path : 'addnewuser', component : AddnewuserComponent,},
   { path: '**', component:PagenotfoundComponent,},
   ];
 
@@ -65,7 +76,14 @@ const appRoute : Routes  = [{
     UserlistComponent,
     PropertydetailsComponent,
     FAQComponent,
-    PhotostockComponent
+    PhotostockComponent,
+    PhotoCategoryComponent,
+    RandomUserComponent,
+    AddnewuserComponent,
+    VideolistComponent,
+    VideoDetailsComponent,
+    SafePipe,
+    LimitPipe
   ],
   imports: [
     BrowserModule,
@@ -79,8 +97,6 @@ const appRoute : Routes  = [{
     PostService,
     ShortTitleService,
     PhotosService,
-    UserService,
-    PhotostockServicesService
   ],
   bootstrap: [AppComponent]
 })

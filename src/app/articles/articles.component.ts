@@ -11,7 +11,7 @@ import { Post } from './../interfaces/post';
 export class ArticlesComponent implements OnInit {
 
   posts: Array<Post> = [];
-  error: string = '';
+  errors: string = '';
   showDetails : boolean = false; 
   constructor( private postservices : PostService) { }
 
@@ -19,7 +19,7 @@ export class ArticlesComponent implements OnInit {
   	this.postservices.getAllPosts()
       .subscribe(
         data => this.posts = data,
-        error => this.error = error.statusText
+        error => this.errors = error
       );
   }
 

@@ -7,12 +7,12 @@ import { ActivatedRoute, Router} from '@angular/router';
   moduleId : module.id,
   selector: 'app-userlist',
   templateUrl: 'userlist.component.html',
-  styleUrls: ['userlist.component.css']
+  styleUrls: ['userlist.component.css'],
+  providers : [UserService]
 })
 export class UserlistComponent implements OnInit {
 	users: Array<Users> = []
-	error : string = ''
-  showDetails : boolean = true
+	errors : string = ''
   constructor( 
     private userservices : UserService,
     private route : ActivatedRoute, private router : Router) { }
@@ -20,7 +20,7 @@ export class UserlistComponent implements OnInit {
   ngOnInit() {
   	this.userservices.getAllUsers().subscribe(
   		data => this.users = data,
-  		error => this.error = error.statusText
+  		error => this.errors = error
   	); 
   }
 

@@ -7,7 +7,8 @@ import { PhotostockServicesService } from '../services/photostock-services.servi
 @Component({
   selector: 'app-photostock',
   templateUrl: './photostock.component.html',
-  styleUrls: ['./photostock.component.css']
+  styleUrls: ['./photostock.component.css'],
+  providers : [PhotostockServicesService]
 })
 export class PhotostockComponent implements OnInit {
   error : string = '';
@@ -25,7 +26,6 @@ export class PhotostockComponent implements OnInit {
   	this.getPhotoStockCategoryData();
   	this.routeParams.params.subscribe( params => {
   		let category= params.category;
-  		console.log(category)
   		this.setPhotoStockCategoryUrl(category);
   		let apiURL = `${this.apiRoot}`;
   		this.apiRoot = apiURL;
@@ -41,8 +41,7 @@ export class PhotostockComponent implements OnInit {
   getPhotoStockCategoryData() {
   	return this.photostockService.getPhotoStockCategories()
   	.subscribe( 
-  		data => 
-  		this.categoryData = data,
+  		data => this.categoryData = data,
   		error => this.error = error
   		);
   }
