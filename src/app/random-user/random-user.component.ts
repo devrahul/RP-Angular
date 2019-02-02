@@ -1,17 +1,13 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { RandomUser } from '../model/random-user.app.module';
+import { Component, OnInit, Input } from '@angular/core';
+
 @Component({
   selector: 'app-random-user',
   templateUrl: './random-user.component.html',
   styleUrls: ['./random-user.component.css']
 })
 export class RandomUserComponent implements OnInit {
-	@Input('user') user
-	
-	constructor() { }
+  @Input('user') user;
+  constructor() {}
 
-	ngOnInit() {
-
-	}
-
+  ngOnInit() {}
 }

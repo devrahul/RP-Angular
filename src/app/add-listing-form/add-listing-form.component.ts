@@ -22,6 +22,7 @@ export class AddListingFormComponent implements OnInit {
   }
 
   onCribSubmit(data) {
+    console.log(data);
     this.cribsService.addCrib(data);
     this.newCribForm.reset();
   }

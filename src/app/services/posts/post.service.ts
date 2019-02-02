@@ -1,25 +1,30 @@
+import { throwError as observableThrowError, Observable } from 'rxjs';
+
+import { catchError, map, flatMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-//import {Post } from './../interfaces/post';
-import {Http , Response} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
+import { IPostItems } from '../../model/interfaces/post';
+import { HttpClient, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-//import 'rxjs/add/operator/toPromise';
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PostService {
-
-  constructor( private http : Http) { }
-
-  getAllPosts() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts/')
-    .map(res => res.json())
-    .catch((err:Response) => {
-            let details = err.json();
-            return Observable.throw(new Error(details));
-         });
+  apiEndPoint: string;
+  constructor(private _http: HttpClient) {
+    this.apiEndPoint = 'https://jsonplaceholder.typicode.com/posts/';
   }
 
-
+  getAllPosts(): Observable<IPostItems[]> {
+    return this._http.get<IPostItems[]>(this.apiEndPoint).pipe(
+      map( res =>  {
+          return <IPostItems[]>res.map( item => {
+            return new IPostItems (
+              item.userId,
+              item.id,
+              item.title,
+              item.body );
+            });
+          })
+        );
+  }
 }

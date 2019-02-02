@@ -1,3 +1,7 @@
 export interface PhotoStockType {
-	name:string
+  data: PhotoStockCategoriesType[];
+}
+
+export interface PhotoStockCategoriesType {
+  name: string;
 }

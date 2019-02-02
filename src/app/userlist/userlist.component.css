@@ -1,5 +1,6 @@
 .thumbnail {
-	min-height: 200px;
+  min-height: 200px;
+  max-height: 404px;
 	overflow-y: hidden;
 }
 .thumbnail > img, .thumbnail a > img {

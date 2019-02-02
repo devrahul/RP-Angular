@@ -1,43 +1,41 @@
 <div class="row">
-	<div class="col-sm-12">
-  	<div class="panel panel-default">
-  		<div class="panel panel-body">
-        {{crib | json}}
-  			<div class="panel panel-heading" *ngIf="showDetails">
-  				<div><button (click)="gotoPropertyList()" class="btn btn-default btn-lg right">Back to property list</button></div>
-  				<h2>Property Type :{{propertyData.name }} <i class="glyphicon glyphicon-barcode"></i> 
-  							{{ propertyData.price | currency:USD:true }} </h2>
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel panel-body">
+        <div class="panel panel-heading" *ngFor="let property of propertyData">
+          <div>
+            <a
+              (click)="gotoPropertyList()"
+              class="btn btn-primary btn-lg right">
+              < Back to property list
+          </a>
+          </div>
+          <h3>
+            Property Type :{{ property.name }}
+            <i class="glyphicon glyphicon-barcode"></i>
+            {{ property.price | currency: "USD" }}
+          </h3>
 
-  				<div class="thumbnail left">
-  					<img src="assets/images/{{propertyData.image}}.jpg" alt="crib thumbnail" />
-  					<div class="caption">
-  						<h4>
-  							<i class="glyphicon glyphicon-home"></i> 
-  							{{ propertyData.address }}
-  						</h4>
-  						<h4>
-  							<i class="glyphicon glyphicon-pencil"></i> 
-  							{{ propertyData.description }}
-  						</h4>
-  						<ul class=" nav nav-tabs">
-  							<li class="active"> <a data-toggle="tab" href="#address">Property Address</a></li>
-  							<li> <a data-toggle="tab" href="#type">Property Type</a></li>
-  						</ul>
-  						<div class="tab-content" >
-  							<div id="address" class="tab-pane fade in active">
-  								<p>{{ propertyData.address }}</p>
-  							</div>
-  							<div id="type" class="tab-pane">
-  								<p>{{ propertyData.type }}</p>
-  							</div>
-
-  						</div>
-
-  					</div>
-  				</div>
-  			</div>
-  			<button (click)="gotoPropertyList()" class="btn btn-default btn-lg">Back to property list</button>
-  		</div>
-  	</div>
+          <div class="thumbnail left">
+            <img
+              src="assets/images/{{ property.image }}.jpg"
+              alt="{{ property.name }}"
+            />
+            <div class="caption">
+              <h4>
+                <i class="glyphicon glyphicon-home"></i> {{ property.address }}
+              </h4>
+              <h4>
+                <i class="glyphicon glyphicon-pencil"></i>
+                {{ property.description }}
+              </h4>
+            </div>
+          </div>
+        </div>
+        <a (click)="gotoPropertyList()" class="btn btn-primary btn-lg">
+          Back to property list
+        </a>
+      </div>
+    </div>
   </div>
 </div>
