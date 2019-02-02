@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IUserItems } from './../model/interfaces/users';
-import { Address } from './../model/interfaces/address';
-import { Geo } from './../model/interfaces/geo';
 import { ICountryData, IStateData } from './../model/country-data-type';
 import {
   FormBuilder,
   FormGroup,
-  FormControl
+  FormControl,
+  Validators
 } from '@angular/forms';
-import { CountryDataService } from './../services/country-data.service';
+import { DataService } from './../services/country-data.service';
 import { Router, Route } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -26,42 +23,53 @@ export class SignupComponent implements OnInit {
   isFormSubmitted: false;
   countries: ICountryData[];
   states: IStateData[];
-  countryData: ICountryData[];
-
+  countryData: Observable<ICountryData[]>;
+  default = 'IN';
   constructor(
-    private countryDataServices: CountryDataService,
+    private _ds: DataService,
     private rt: Router,
-    _fb: FormBuilder
-  ) {}
+    private _fb: FormBuilder
+  ) {
+
+
+  }
 
   ngOnInit() {
-    this._getCountries();
+    this.RegForm = this._fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required],
+      password: [''],
+      country: ['', Validators.required],
+      state: ['', Validators.required],
+      subscribe: ['']
+
+    });
+    this.RegForm.controls['country'].setValue(this.default, {onlySelf: true});
+    this.countryData = this._getCountries();
     this._getStates();
   }
 
   _getCountries() {
-    this.countryDataServices.getCountrylist().subscribe(ctry => {
-      this.countryData = ctry as ICountryData[];
-    });
+    return this._ds.getCountrylist();
   }
 
   _getStates() {
-    return this.countryDataServices.getStateList().subscribe(states => {
-      this.states =  states as IStateData[];
+    return this._ds.getStateList().subscribe(states => {
+      this.states =  states;
     });
   }
 
-  selectStates(stateId: number) {
-    if (stateId > 0) {
-      return this.countryDataServices
-        .getStatesByCountryId(stateId)
+  selectStates(code: number | string) {
+    if (code ) {
+      return this._ds.getStatesByCountryId(code)
         .subscribe(data => this.states = data);
     } else {
       return this._getStates();
     }
   }
 
-  doRegister(signupForm: FormControl) {
+  doRegister( signupForm ) {
     const data = localStorage.setItem(
       'ObjData',
       JSON.stringify(signupForm.value)

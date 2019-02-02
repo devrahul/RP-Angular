@@ -1,8 +1,9 @@
 export interface ICountryData {
-  id: number;
-  code: string;
+  name: string;
+  code: string | number;
 }
 export interface IStateData {
-  id: number;
-  code: string;
+  code: string | number;
+  name: string | number;
+  abbrev: number | string;
 }
