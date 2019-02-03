@@ -13,8 +13,9 @@ import { FooterComponent } from './footer/footer.component';
 // import  { LazyModule } from './lazy.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './shared/material';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     HttpClientJsonpModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],

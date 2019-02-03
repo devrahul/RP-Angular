@@ -3,7 +3,12 @@
 			<app-top-menu></app-top-menu>
 			<article>
 				<section>
-					<router-outlet></router-outlet>
+            <div class="loaderAnimation" [hidden]="!loading"><span>
+              <img src="assets/images/mbLoader.gif" width="45" height="45" alt="Loader"> Loading Results</span>
+            </div>
+            <div [hidden]="loading" class="router-output">
+                <router-outlet></router-outlet>
+              </div>
 				</section>
 			</article>
 			<footer>

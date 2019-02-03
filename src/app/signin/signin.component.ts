@@ -5,12 +5,7 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import {
-  FormBuilder,
-  FormGroup, AbstractControl, AbstractControlDirective,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder} from '@angular/forms';
 
 @Component({
   moduleId: module.id,
@@ -31,9 +26,9 @@ export class SigninComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this._fb.group({
-      username: new FormControl(),
-      password: new FormControl(),
+    this.loginForm  = this._fb.group( {
+      username : [ ''],
+      password: [' ']
     });
   }
 

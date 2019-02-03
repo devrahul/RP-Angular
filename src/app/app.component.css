@@ -1,0 +1,10 @@
+.loaderAnimation {
+  width: 242px;
+  background: lightgoldenrodyellow;
+  border: 1px solid #ebebeb;
+  margin: auto;
+  -webkit-box-shadow: 0 2px 5px 1px #e7e7e7;
+  box-shadow: 0 2px 5px 1px #e7e7e7;
+  border-radius: 5px;
+  padding: 10px 0;
+}
