@@ -8,8 +8,9 @@ For more information about the error, either API Server is down that is not able
             </div>
           </div>
           </div>
-          
-<div *ngIf="showDetails" > 
+
+<div *ngIf="showDetails" >
+
 <div class="thumbnail">
     <img src="assets/images/default-post.jpg" alt="post thumbnail">
 
@@ -21,17 +22,17 @@ For more information about the error, either API Server is down that is not able
         </span>
       </h4>
       <h3>
-        <i class="glyphicon glyphicon-tag"></i> 
+        <i class="glyphicon glyphicon-tag"></i>
          {{ post.userId }}
       </h3>
       <h4>
-        <i class="glyphicon glyphicon-fire"></i> 
+        <i class="glyphicon glyphicon-fire"></i>
           {{ title.shortTittle( post.title) }}
       </h4>
 
       <hr>
 
-      <button 
+      <button
         class="btn btn-sm btn-success">
         Details
       </button>

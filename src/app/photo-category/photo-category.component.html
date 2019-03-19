@@ -9,21 +9,13 @@ For more information about the error, either API Server is down that is not able
             </div>
           </div>
           </div>
-<div> 
+<div>
 <div class="thumbnail" *ngIf="!errors">
     <img src="assets/images/bigstockphoto-default.jpg" alt="post thumbnail" class="img-thumbnail">
   <div class="caption">
     <div>
-      <h4>
-        <span class="label label-default">
-          Category : {{ categories.name }}
-        </span>
-      </h4>
-      <h4> 
-         <a href="{{apiRoot}}?category={{categories.name}}&callback=JSONP_CALLBACK">{{categories.name}}</a>
-      </h4>
-     <button class="btn btn-sm btn-default">
-        Get Photo Stock of Category
+     <button class="btn btn-md btn-primary">
+        View {{ categories.name }} detail
       </button>
     </div>
   </div>

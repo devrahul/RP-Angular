@@ -1,23 +1,36 @@
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Http , Request, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import "rxjs/add/operator/map";
-import 'rxjs/add/operator/catch';
-import "rxjs/add/observable/throw";
-
-@Injectable()
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse
+} from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { IUserItems } from 'app/model/interfaces/users';
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
-  constructor( private http : Http) {
- }
-
-  getAllUsers(){
-  	return this.http.get( 'https://jsonplaceholder.typicode.com/users/')
-  	.map( res => res.json())
-  	.catch((err:Response) => {
-            let details = err.json();
-            console.log(Observable.throw(details))
-            return Observable.throw(new Error(details));
-         });
+  apiEndPoint: string;
+  constructor(private _http: HttpClient) {
+    this.apiEndPoint = 'https://jsonplaceholder.typicode.com/users/';
   }
 
+  getAllUsers(): Observable<IUserItems[]> {
+    return this._http
+      .get(this.apiEndPoint, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'token'
+        })
+      })
+      .pipe(
+        map(res => <IUserItems[]>res),
+        catchError((err: HttpErrorResponse) => {
+          const details = err.message;
+          console.log(observableThrowError(details));
+          return observableThrowError(err);
+        })
+      );
+  }
 }

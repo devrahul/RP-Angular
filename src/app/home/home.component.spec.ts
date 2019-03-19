@@ -19,7 +19,11 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create ', () => {
     expect(component).toBeTruthy();
+  });
+  
+  it( 'should match profile text ',() => {
+    expect(component.homecontent).toContain('I am a web developer');
   });
 });

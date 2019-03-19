@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService} from './../services/posts/post.service';
-import { Post } from './../interfaces/post';
+import { PostService } from './../services/posts/post.service';
+import { IPostItems } from './../model/interfaces/post';
+import { Observable } from 'rxjs';
 
 @Component({
   moduleId: module.id,
@@ -9,18 +10,13 @@ import { Post } from './../interfaces/post';
   styleUrls: ['articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
+  posts: Observable<IPostItems[]>;
+  errors: string;
+  showDetails: boolean;
+  constructor(private _postservices: PostService) {}
 
-  posts: Array<Post> = [];
-  errors: string = '';
-  showDetails : boolean = false; 
-  constructor( private postservices : PostService) { }
-
-  ngOnInit() {
-  	this.postservices.getAllPosts()
-      .subscribe(
-        data => this.posts = data,
-        error => this.errors = error
-      );
+  ngOnInit(): void {
+    this.showDetails = false;
+    this.posts =  this._postservices.getAllPosts();
   }
-
 }

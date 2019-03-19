@@ -1,5 +1,6 @@
 .thumbnail {
   min-height: 380px;
+  max-height: 404px;
 }
 
 .thumbnail itemlist {

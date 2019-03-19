@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+body { margin: 0; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: "Titillium Web",sans-serif !important;
+background-color: lightgoldenrodyellow;
+font-size: 1.33em;
+line-height: 1.38;
+}
+.panel-default .panel-body {
+  background-color: darkgray;
+}
+
+.navbar-default .navbar-brand {
+  color: white !important;
+  background-color: darkslateblue;
+}
+.panel-default > .panel-heading {
+  color: lightslategrey;
+  background-color: lightsteelblue !important;
+}

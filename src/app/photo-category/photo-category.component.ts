@@ -1,5 +1,5 @@
-import { Component,  OnInit, Input } from '@angular/core';
-import { PhotoStockType } from '../model/photo-stock-type';
+import { Component, Input } from '@angular/core';
+import { PhotoStockType, PhotoStockCategoriesType } from '../model/photo-stock-type';
 import { PhotostockComponent } from './../photostock/photostock.component';
 
 @Component({
@@ -7,14 +7,10 @@ import { PhotostockComponent } from './../photostock/photostock.component';
   templateUrl: './photo-category.component.html',
   styleUrls: ['./photo-category.component.css']
 })
-export class PhotoCategoryComponent implements OnInit {
+export class PhotoCategoryComponent {
 
-  @Input('categories') categories : PhotoStockType;
-  @Input('errors') errors
-  apiRoot :string = '';
+  @Input('categories') categories: PhotoStockCategoriesType;
+  @Input('errors') errors;
+
   constructor() {}
-
-  ngOnInit() {
-  	this.apiRoot = 'http://api.bigstockphoto.com/2/883610/search/';
-  }  
 }

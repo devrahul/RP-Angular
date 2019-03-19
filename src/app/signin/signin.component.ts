@@ -1,27 +1,48 @@
-import { Component, OnInit , ViewChild } from '@angular/core';
-import { NgForm, FormsModule , AbstractControlDirective} from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { FormGroup, FormControl, FormBuilder} from '@angular/forms';
+
 @Component({
   moduleId: module.id,
   selector: 'app-signin',
   templateUrl: 'signin.component.html',
-  styleUrls: ['signin.component.css']
+  styleUrls: ['signin.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SigninComponent implements OnInit {
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  constructor(
+    private router: Router,
+    private _cd: ChangeDetectorRef,
+    private _fb: FormBuilder
+  ) {}
 
-  @ViewChild('loginForm')
-  loginForm = NgForm;
-
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loginForm  = this._fb.group( {
+      username : [ ''],
+      password: [' ']
+    });
   }
 
-  doLogin (data) {
-  	console.log('Successful Loggedi');
-  	console.log(data);
+  doLogin(data) {
+    console.warn(this.loginForm.value);
+    const lgData = data.value;
+    const storage = sessionStorage.setItem(
+      'loginedUser',
+      JSON.stringify(lgData)
+    );
+    this.router.navigate(['welcome']);
+    this._cd.markForCheck();
   }
-  resetForm( ){
-  	console.log(this.loginForm );
+  resetForm() {
+    console.log(this.loginForm);
   }
- 
 }

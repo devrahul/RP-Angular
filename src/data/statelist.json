@@ -1,13 +1,18 @@
 [
-	{"id":1,"code":"Arizona"},
-	{"id":1,"code":"Alaska"},
-	{"id":1,"code":"Florida"},
-	{"id":2,"code":"Hawaii"},
-	{"id":2,"code":"Gujarat"},
-	{"id":2,"code":"Goa"},
-	{"id":2,"code":"Panjab"},
-	{"id":2,"code":"UP"},
-	{"id":2,"code":"Haryana"},
-  	{"id":3,"code":"Queensland"},
-  	{"id":3,"code":"Tasmania"}
- ]
+  { "code": "US", "name": "Arizona", "abbrev": "AR" },
+  { "code": "US", "name": "Alaska", "abbrev": "AL" },
+  { "code": "US", "name": "Florida", "abbrev": "FL" },
+  { "code": "US", "name": "California", "abbrev": "CA" },
+  { "code": "US", "name": "Colorado", "abbrev": "CO" },
+  { "code": "US", "name": "New York", "abbrev": "NY" },
+  { "code": "US", "name": "Pennsylvania", "abbrev": "PA" },
+  { "code": "IN", "name": "Gujarat", "abbrev": "GR" },
+  { "code": "IN", "name": "Goa", "abbrev": "GA" },
+  { "code": "IN", "name": "Panjab", "abbrev": "PB" },
+  { "code": "IN", "name": "Uttar Pradesh", "abbrev": "UP" },
+  { "code": "IN", "name": "Haryana", "abbrev": "HR" },
+  { "code": "AU", "name": "Queensland", "abbrev": "QL" },
+  { "code": "AU", "name": "Tasmania", "abbrev": "TA" },
+  { "code": "AU", "name": "Victoria", "abbrev": "VI" },
+  { "code": "AU", "name": "Northern Territory", "abbrev": "NT" }
+]
